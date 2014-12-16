@@ -2,4 +2,4 @@
 cd /home/boulara
 source activate py3k
 
-python SeatGeek.py
+python /home/boulara/apps/SeatGeekWatcher/SeatGeek.py
