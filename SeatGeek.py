@@ -14,12 +14,13 @@ def main():
 		# Get updated SeatGeek Data 
 		#print(show['concert_id'])
 		id = show['concert_id']
+		title = show['title']
 		data = fncGetSeatGeekData(id)
-		print(show['title'])
+		print(title + " - " + data['datetime_local'])
 		#Check 'old' lowest price vs 'new' lowest price
-		fncCheckValues(id,show['lowest_price'],data['stats']['lowest_price'], 'lowest_price')
-		fncCheckValues(id,show['ticket_count'],data['stats']['listing_count'], 'ticket_count')
-		fncCheckValues(id,show['average_price'],data['stats']['average_price'], 'average_price')
+		fncCheckValues(id,show['lowest_price'],data['stats']['lowest_price'], 'lowest_price', title)
+		fncCheckValues(id,show['ticket_count'],data['stats']['listing_count'], 'ticket_count', title)
+		fncCheckValues(id,show['average_price'],data['stats']['average_price'], 'average_price', title)
 		
 
 		fncLastChecked(id)

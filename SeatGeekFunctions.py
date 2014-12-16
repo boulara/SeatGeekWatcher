@@ -34,13 +34,13 @@ def fncGetSeatGeekData(concert_id):
         text = "Error: " + r.status_code
         fncSendPushover(text)
 
-def fncCheckValues(id,old,new,parm):
+def fncCheckValues(id,old,new,parm, title):
 	#print('#######',old['lowest_price'])
 	#print(old, ' ### ', new)
 	trendName = parm + '_trend'
 	if (new > old):
 		db.concerts.update({'concert_id': id}, {'$set': {parm: new, trendName: fncTrend(old,new)}})
-		text = parm + " Changed"
+		text = titele + " " + parm + " Changed"
 		fncSendPushover(text)
 		print('DB Updated >> ', parm)
 	else:

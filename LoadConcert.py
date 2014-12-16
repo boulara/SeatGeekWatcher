@@ -5,20 +5,29 @@ import pymongo
 import sys
 import datetime
 from pymongo import MongoClient
+from SeatGeekFunctions import *
+from pprint import *
 
+
+
+ShowID = sys.argv[1]
+
+if (ShowID is None):
+	Print('Error:')
 
 
 # Connect to ConcertsDB
 client = MongoClient()
 db = client.concerts
 
+data = fncGetSeatGeekData(ShowID)
 
-ShowID = sys.argv
-
+pprint(data)
 x = {
-	"title" : ShowTitle
+	"title" : data['title'],
 	"concert_id" : ShowID,
-	"concert_url" : SHOWURL,
+	"concert_url" : data['url'],
+	"img_link": data['performers'][0]['images']['medium'],
 	"last_checked" : "2014-12-13T15:42:12.733075",
 	"concert_date" : "2015-04-25T23:30:00",
 	"ticket_count" : 0,
@@ -29,7 +38,7 @@ x = {
 	"average_price_trend" : "None"
 }
 
-
+print(x)
 
 ### Load New Data
 
