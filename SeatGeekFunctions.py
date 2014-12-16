@@ -40,7 +40,7 @@ def fncCheckValues(id,old,new,parm, title):
 	trendName = parm + '_trend'
 	if (new > old):
 		db.concerts.update({'concert_id': id}, {'$set': {parm: new, trendName: fncTrend(old,new)}})
-		text = titele + " " + parm + " Changed"
+		text = title + " " + parm + " Changed"
 		fncSendPushover(text)
 		print('DB Updated >> ', parm)
 	else:
