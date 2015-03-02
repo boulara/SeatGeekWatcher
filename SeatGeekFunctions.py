@@ -30,7 +30,8 @@ def fncGetSeatGeekData(concert_id):
     if (r.status_code == 200):
         return r.json()
     elif (r.status_code == 404):
-        text = concert_id, " is invalid. Please Delete"
+        fncDeleteConcert(concert_id)
+        text = concert_id, " is invalid and has been removed."
         fncSendPushover(text)
     else:
         print('Error', r.status_code)
@@ -66,3 +67,9 @@ def fncSendPushover(alert):
 
 def fncWriteLog(id,data):
 	db.concerts.update({'concert_id': id}, {'$set' : {'history': { printTimestamp(): {'ticket_count': data['stats']['listing_count']}}}})
+
+
+def fncDeleteConcert(concert_id):
+    db.concerts.remove({'concert_id': concert_id})
+
+
