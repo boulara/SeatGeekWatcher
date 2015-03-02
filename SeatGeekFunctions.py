@@ -29,6 +29,9 @@ def fncGetSeatGeekData(concert_id):
     r = requests.get(url)
     if (r.status_code == 200):
         return r.json()
+    elif (r.status_code == 404):
+        text = concert_id, " is invalid. Please Delete"
+        fncSendPushover(text)
     else:
         print('Error', r.status_code)
         text = "Error: " + r.status_code
