@@ -16,7 +16,7 @@ def main():
 		id = show['concert_id']
 		title = show['title']
 		data = fncGetSeatGeekData(id)
-		print(title + " - " + data['datetime_local'])
+		#print(title + " - " + data['datetime_local'])
 		#Check 'old' lowest price vs 'new' lowest price
 		fncCheckValues(id,show['lowest_price'],data['stats']['lowest_price'], 'lowest_price', title)
 		fncCheckValues(id,show['ticket_count'],data['stats']['listing_count'], 'ticket_count', title)
